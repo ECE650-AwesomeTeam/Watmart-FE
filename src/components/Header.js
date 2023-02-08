@@ -3,6 +3,7 @@ import '../css/Header.css';
 import {HiOutlineMenuAlt4} from 'react-icons/hi';
 import {FaRegTimesCircle} from 'react-icons/fa';
 import {BsCart4} from 'react-icons/bs';
+import Logo from '../images/logo-no-background.png';
 
 const Header = () => {
 
@@ -11,7 +12,10 @@ const Header = () => {
     return (
         <div className="header">
             <div className="container">
-                <h1><span><BsCart4 /> Wat</span>mart</h1>
+                <h1 className="logo-container">
+                    <img className="logo" src={Logo} alt='' />
+                    <span>Watmart</span>
+                </h1>
                 <div className="container1">
                     <ul className={ click ? 'nav-menu active' : 'nav-menu' }>  
                         <li><p><span className="hyperlink">Register</span> or <span className="hyperlink">Signin</span></p></li>
