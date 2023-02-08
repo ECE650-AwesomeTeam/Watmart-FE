@@ -1,0 +1,16 @@
+.listing-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: -1;
+}
+
+.item {
+    position: absolute;
+}
+
+.image {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+}
