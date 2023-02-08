@@ -7,6 +7,7 @@
      border-bottom: 1px solid #eee;
  }
  
+
  .header .container {
     height: 100%;
     display: flex;
@@ -15,6 +16,19 @@
     padding: 1rem;
  }
  
+ .header .container .logo {
+    width: 50;
+    height: 50px;
+    margin-right: 10px;
+ }
+
+ .header .container .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+
  .header .container .container1 {
     height: 100%;
     display: flex ;
