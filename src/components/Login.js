@@ -1,15 +1,15 @@
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Image from 'mui-image';
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Image from "mui-image";
 
 const theme = createTheme();
 
@@ -18,8 +18,8 @@ function Login() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+            email: data.get("email"),
+            password: data.get("password"),
         });
     };
 
@@ -30,16 +30,26 @@ function Login() {
                 <Box
                     sx={{
                         marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
                     }}
                 >
                     <Typography component="h1" variant="h5">
                         Welcome to Watmart
                     </Typography>
-                    <Image src="/logo/png/logo-no-background.png" fit="fill" duration={800} alt="" />
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Image
+                        src="/logo/png/logo-no-background.png"
+                        fit="fill"
+                        duration={800}
+                        alt=""
+                    />
+                    <Box
+                        component="form"
+                        onSubmit={handleSubmit}
+                        noValidate
+                        sx={{ mt: 1 }}
+                    >
                         <TextField
                             margin="normal"
                             required
@@ -61,7 +71,9 @@ function Login() {
                             autoComplete="current-password"
                         />
                         <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
+                            control={
+                                <Checkbox value="remember" color="primary" />
+                            }
                             label="Remember me"
                         />
                         <Button
@@ -91,4 +103,4 @@ function Login() {
     );
 }
 
-export default Login
+export default Login;

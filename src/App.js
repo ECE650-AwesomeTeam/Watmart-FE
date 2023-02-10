@@ -1,6 +1,6 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Login from './pages/Login'
-import Signup from './pages/Signup'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from './components/Login'
+import Signup from './components/Signup'
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path={'/signup'} element={<Signup />}></Route>
-          <Route index path={'/login'} element={<Login />}></Route>
+          <Route path={'/login'} element={<Login />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
