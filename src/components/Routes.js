@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 const Routes: React.FC<{}> = () => {
@@ -6,6 +6,8 @@ const Routes: React.FC<{}> = () => {
         <React.Fragment>
             <Switch>
                 <Route path="/" exact component={Listings} />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
             </Switch>
         </React.Fragment>
     );
