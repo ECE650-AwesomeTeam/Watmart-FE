@@ -114,6 +114,8 @@ function Login() {
                         <FormControlLabel
                             control={
                                 <Checkbox
+                                    id="remember"
+                                    name="remember"
                                     onChange={formik.handleChange}
                                     value={formik.values.remember}
                                     checked={formik.values.remember}
