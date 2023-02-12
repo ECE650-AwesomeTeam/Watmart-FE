@@ -1,4 +1,4 @@
-import Button from "@mui/material/Button";
+import { LoadingButton } from "@mui/lab";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -10,18 +10,46 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Image from "mui-image";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const theme = createTheme();
 
+const initialValues = {
+    email: "",
+    password: "",
+    remember: false,
+};
+
+const validationSchema = Yup.object().shape({
+    password: Yup.string()
+        .min(6, "Password must be more than 6 character length")
+        .required("Password is required"),
+    email: Yup.string()
+        .email("Invalid email address")
+        .required("Email is required"),
+});
+
 function Login() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
-    };
+    const { login } = useAuth();
+
+    const [loading, setLoading] = useState(false);
+
+    const formik = useFormik({
+        initialValues: initialValues,
+        validationSchema: validationSchema,
+        onSubmit: async (values) => {
+            console.log("login");
+            setLoading(true);
+            try {
+                await login(values.email, values.password);
+            } catch (e) {
+                setLoading(false);
+            }
+        },
+    });
 
     return (
         <ThemeProvider theme={theme}>
@@ -39,23 +67,27 @@ function Login() {
                         Welcome to Watmart
                     </Typography>
                     <Image
-                        src="/logo/png/logo-no-background.png"
+                        src="/logo/png/logo-color.png"
                         fit="fill"
                         duration={800}
                         alt=""
                     />
-                    <Box
-                        component="form"
-                        onSubmit={handleSubmit}
-                        noValidate
-                        sx={{ mt: 1 }}
-                    >
+                    <form onSubmit={formik.handleSubmit}>
                         <TextField
                             margin="normal"
                             required
                             fullWidth
                             id="email"
                             label="Email Address"
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                            error={
+                                formik.touched.email &&
+                                Boolean(formik.errors.email)
+                            }
+                            helperText={
+                                formik.touched.email && formik.errors.email
+                            }
                             name="email"
                             autoComplete="email"
                             autoFocus
@@ -64,6 +96,15 @@ function Login() {
                             margin="normal"
                             required
                             fullWidth
+                            onChange={formik.handleChange}
+                            error={
+                                formik.touched.password &&
+                                Boolean(formik.errors.password)
+                            }
+                            helperText={
+                                formik.touched.password &&
+                                formik.errors.password
+                            }
                             name="password"
                             label="Password"
                             type="password"
@@ -72,18 +113,24 @@ function Login() {
                         />
                         <FormControlLabel
                             control={
-                                <Checkbox value="remember" color="primary" />
+                                <Checkbox
+                                    onChange={formik.handleChange}
+                                    value={formik.values.remember}
+                                    checked={formik.values.remember}
+                                    color="primary"
+                                />
                             }
                             label="Remember me"
                         />
-                        <Button
+                        <LoadingButton
                             type="submit"
                             fullWidth
+                            loading={loading}
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
                             Login
-                        </Button>
+                        </LoadingButton>
                         <Grid container>
                             <Grid item xs>
                                 {/*<Link href="#" variant="body2">*/}
@@ -96,7 +143,7 @@ function Login() {
                                 </Link>
                             </Grid>
                         </Grid>
-                    </Box>
+                    </form>
                 </Box>
             </Container>
         </ThemeProvider>
