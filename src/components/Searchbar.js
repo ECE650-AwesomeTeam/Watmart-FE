@@ -1,11 +1,13 @@
 import React from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
 import '../css/Searchbar.css';
+import AnimatingBanner from "./AnimatingBanner";
 
 const Searchbar = () => {
     return (
         <div className="searchbar">
-            <div className="content">
+            <AnimatingBanner />
+            {/* {<div className="content">
                 <h1>Reduce, Reuse, Recycle with a click </h1>
                 <p className="search-text">Search for pre-owned items in the largest e-commercial for Waterloo students.</p>
                 <form className="search">
@@ -23,7 +25,7 @@ const Searchbar = () => {
 
                     </div>
                 </form>
-            </div>
+            </div>} */}
         </div>
     )
 };
