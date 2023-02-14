@@ -5,11 +5,13 @@ import Searchbar from "./Searchbar";
 import Categories from './Categories';
 import Footer from "./Footer";
 import Features from "./Features";
+import Filter from "./Filter";
 const Listings = (props) => {
     return (
     <div>
         <Header />
         <Searchbar />
+        {/*<Filter />*/}
         <Categories />
         <Features />
         <Footer />
