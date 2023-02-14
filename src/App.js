@@ -1,10 +1,14 @@
 import React from "react";
-import WTRoutes from "./components/WTRoutes";
-
-const App: React.FC<{}> = () => {
-    return (
-        <WTRoutes />   
-    );
+import Listings from "./components/Listings";
+import Filter from "./components/Filter"
+import Signup from "./components/Signup";
+import Login from "./components/Login"
+function App() {
+  return (
+    <>
+      <Listings />
+    </>
+  );
 }
 
 export default App;
