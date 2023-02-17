@@ -1,11 +1,9 @@
-import Login from "./components/Login";
 import React from "react";
-import Listings from "./components/Listings";
-function App() {
+import WTRoutes from "./components/WTRoutes";
+
+const App: React.FC<{}> = () => {
     return (
-        <>
-            <Login />
-        </>
+        <WTRoutes />   
     );
 }
 
