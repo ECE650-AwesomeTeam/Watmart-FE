@@ -5,15 +5,20 @@ import Searchbar from "./Searchbar";
 import Categories from './Categories';
 import Footer from "./Footer";
 import Features from "./Features";
-const Listings = (props) => {
+import '../css/main.css';
+
+const Listings: React.FC<{}>  = (props) => {
     return (
-    <div>
+    <>
         <Header />
         <Searchbar />
-        <Categories />
-        <Features />
-        <Footer />
-    </div>
+        <div className="listingsContainer">
+            <Categories />
+            <Features />
+            <Footer />
+        </div>
+        
+    </>
     );
 };
 

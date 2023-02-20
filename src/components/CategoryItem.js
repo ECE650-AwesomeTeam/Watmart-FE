@@ -3,13 +3,13 @@ import '../css/CategoryItem.css';
 
 const CategoryItem = (props) => {
     return (
-        <div className="category-item-container">
+        <li className="category-item-container" key={props.key}>
             <div className="image-container">
                 <img className="category-item-image" src={props.img} atl='' />
             </div>
-            
+            <div className="overlay" />
             <p className="category-item-text">{props.categoryName}</p>
-        </div>
+        </li>
     );
 }
 

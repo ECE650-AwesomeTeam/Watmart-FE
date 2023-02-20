@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../css/Header.css';
 import {HiOutlineMenuAlt4} from 'react-icons/hi';
 import {FaRegTimesCircle} from 'react-icons/fa';
-import Logo from '../images/logo-no-background.png';
+import Logo from '../assets/logo-no-background.png';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {

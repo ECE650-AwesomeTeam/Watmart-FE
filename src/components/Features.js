@@ -1,15 +1,15 @@
 import React from "react";
 import '../css/Features.css';
-import Tapes from '../images/tapes.jpg';
-import Motorbikes from '../images/motorbikes.jpg';
-import Motobike1 from '../images/motobike1.jpg';
-import Kitchen from '../images/kitchen.jpg';
-import Sportitems from '../images/sportitems.jpg';
-import Kettle from '../images/kettle.jpg';
-import Kebab from '../images/kebab.jpg';
-import Bed4 from '../images/bed4.jpg';
-import LivingRoom from '../images/living-room.jpg';
-import Bathroom2 from '../images/bath2.jpg';
+import Tapes from '../assets/tapes.jpg';
+import Motorbikes from '../assets/motorbikes.jpg';
+import Motobike1 from '../assets/motobike1.jpg';
+import Kitchen from '../assets/kitchen.jpg';
+import Sportitems from '../assets/sportitems.jpg';
+import Kettle from '../assets/kettle.jpg';
+import Kebab from '../assets/kebab.jpg';
+import Bed4 from '../assets/bed4.jpg';
+import LivingRoom from '../assets/living-room.jpg';
+import Bathroom2 from '../assets/bath2.jpg';
 import ListingItem from "./ListingItem";
 
 const Features = () => {
