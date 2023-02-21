@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Header from "./Header";
-import Searchbar from "./Searchbar";
-import Categories from './Categories';
+import Categories from "./Categories";
 import Footer from "./Footer";
 import Features from "./Features";
+import AnimatingBar from "./AnimatingBar";
 const Listings = (props) => {
     return (
-    <div>
-        <Header />
-        <Searchbar />
-        <Categories />
-        <Features />
-        <Footer />
-    </div>
+        <div>
+            <Header />
+            <AnimatingBar />
+            <Categories />
+            <Features />
+            <Footer />
+        </div>
     );
 };
 
