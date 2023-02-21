@@ -1,7 +1,13 @@
 import React from "react";
+import Header from './Header';
 
 const SearchItemList = props => {
-    return <div>Search items page.</div>
+    return (
+        <>
+            <Header />
+            {/*your code goes from here */}
+        </>
+    )
 };
 
 export default SearchItemList;

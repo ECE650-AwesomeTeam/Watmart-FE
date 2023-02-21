@@ -1,7 +1,12 @@
 import React from "react";
-
+import Header from './Header';
 const ListingDetail = props => {
-    return <div>Product detail page.</div>
+
+    return (
+        <>
+            <Header />
+        </>
+    )
 };
 
 export default ListingDetail;
