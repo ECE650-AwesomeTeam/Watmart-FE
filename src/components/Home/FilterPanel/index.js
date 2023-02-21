@@ -1,11 +1,11 @@
 import React from 'react'
 
-const FilterPanel = () => {
+const List = () => {
     return (
         <div>
-            <h1>FilterPanel</h1>
+            <h1>Filter Panel</h1>
         </div>
     );
 };
 
-export default FilterPanel
+export default List
