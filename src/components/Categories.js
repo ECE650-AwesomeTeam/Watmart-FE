@@ -11,6 +11,7 @@ const Categories = (props) => {
                 {props.categories.map(item => {
                     return <CategoryItem img={item.category_img} categoryName={item.category_name} key={item.key} />
                 })}
+                
             </ul>      
         </div>
     );

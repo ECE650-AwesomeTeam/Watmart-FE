@@ -7,21 +7,23 @@ const AdsItem = (props) => {
     const navigate = useNavigate();
 
     const listingClickHandler = () => {
-        console.log("Click here");
-        navigate("/listing/:id");
+        navigate("/listing/300");
     };
 
     return (
-        <div className="listing-container" key={props.key} onClick={listingClickHandler}>
-            <img src={props.img} atl='' />
-            <div className="ads-desc-section">
-                <p className="ads-desc">{props.desc}</p>
-                <div className="ads-desc-bottom">
-                    <p className="ads-price">$ {props.price}</p>
-                    <FaRegHeart className="ads-bookmark-icon" />
-                </div>
-            </div>
-        </div>
+        <figure onClick={listingClickHandler}>
+           <img src={props.img} atl='' />
+       
+       
+       <div className="ads-desc-section">
+           <p className="ads-desc">{props.desc}</p>
+           <div className="ads-desc-bottom">
+               <p className="ads-price">$ {props.price}</p>
+               <FaRegHeart className="ads-bookmark-icon" />
+           </div>
+       </div>
+        </figure>
+        
     )
 }
 
