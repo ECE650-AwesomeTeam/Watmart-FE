@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
-import SearchBar from "../../components/Home/SearchBar";
-import List from "../../components/Home/List";
-import FilterPanel from "../../components/Home/FilterPanel";
-import './page.css';
-import {dataList} from "../Home/FilterPanel/filterFake";
+import {dataList} from "../constants";
+import FilterPanel from "../component/Home/FilterPanel";
+import "./page.css"
+
 
 const Home = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -27,8 +26,7 @@ const Home = () => {
         !value ? null : setSelectedRating(value);
 
     const handleChangeChecked = (id) => {
-        const cusinesStateList = cuisines;
-        const changeCheckedCuisines = cusinesStateList.map((item) =>
+        const changeCheckedCuisines = cuisines.map((item) =>
             item.id === id ? { ...item, checked: !item.checked } : item
         );
         setCuisines(changeCheckedCuisines);
@@ -90,12 +88,10 @@ const Home = () => {
 
     useEffect(() => {
         applyFilters();
-    }, [selectedRating, selectedCategory, cuisines, searchInput, selectedPrice]);
+        }, [selectedRating, selectedCategory, cuisines, searchInput, selectedPrice]);
 
     return (
-        <div className='home'>
-            <div className='home_panelList-wrap'>
-                {/* Filter Panel */}
+        <div className='Home'>
                 <div className='home_panel-wrap'>
                     <FilterPanel
                         selectedCategory={selectedCategory}
@@ -107,7 +103,6 @@ const Home = () => {
                         changeChecked={handleChangeChecked}
                         changePrice={handleChangePrice}
                     />
-                </div>
             </div>
         </div>
     );
