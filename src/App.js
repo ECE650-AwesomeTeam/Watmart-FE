@@ -1,17 +1,14 @@
 import React from "react";
-import Listings from "./components/Listings";
-import Signup from "./components/Signup";
-import Login from "./components/Login"
-import Footer from "./components/Footer"
-import SearchBar from "./components/Home/SearchBar";
-import List from "./components/Home/List";
-import FilterPanel from "./components/Home/FilterPanel";
-import Home from "./components/Page"
+// import Listings from "./components/Listings";
+// import Signup from "./components/Signup";
+// import Login from "./components/Login"
+// import Footer from "./components/Footer"
+import Home from "./components/home"
 
 function App() {
   return (
     <div>
-      <Home />
+      <Home  />
     </div>
   );
 }
