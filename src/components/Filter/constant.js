@@ -9,6 +9,7 @@ export const categoryList = [
         value: 'dish',
         label: '🍕 Dishes',
     },
+
 ];
 
 export const ratingList = [
