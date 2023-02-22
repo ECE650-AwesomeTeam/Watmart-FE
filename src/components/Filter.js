@@ -5,7 +5,13 @@ import List from "./Filter/List";
 import '../css/Filter.css';
 
 const Filter = () => {
-    const [selectedCategory, setSelectedCategory] = useState(initialState);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedRating, setSelectedRating] = useState(null);
+    const handleSelectCategory = (event, value) =>
+        ! value ? null : setSelectedCategory(value)
+
+    const handleSelectRating = (event, value) =>
+        ! value ? null : setSelectedRating(value)
 
     return (
         <div className='home'>
@@ -15,8 +21,11 @@ const Filter = () => {
                  Filter Panel
                 <div className='home_panel-wrap'>
                     <FilterPanel
-                        selectedToggle={handleSelectToggle}
-                        selectedCategory={selectedCategory}/>
+                        selectToggle={handleSelectCategory}
+                        selectedCategory={selectedCategory}
+                        selectRating={handleSelectRating}
+                        selectedRating={selectedRating}
+                    />
                 </div>
                 {/* List & Empty View */}
                 <div className='home_list-wrap'>
