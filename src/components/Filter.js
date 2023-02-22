@@ -3,12 +3,12 @@ import SearchBar from "./Filter/SearchBar";
 import FilterPanel from "./Filter/FilterPanel";
 import List from "./Filter/List";
 import '../css/Filter.css';
-import {dataList} from "./Filter/constant";
+import {dataList} from "./Filter/FilterConstants";
 
 const Filter = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedRating, setSelectedRating] = useState([null]);
-    const [selectedPrice, setSelectedPrice] = useState([1000, 5000]);
+    const [selectedPrice, setSelectedPrice] = useState([1, 3000]);
 
     // calling backend
     const [list, setList] = useState(dataList);
@@ -19,17 +19,22 @@ const Filter = () => {
         {
             id:1,
             checked:false,
-            label:'American',
+            label:'Electronics',
         },
         {
             id:2,
             checked:false,
-            label:'Chinese',
+            label:'Furniture',
         },
         {
             id:3,
             checked:false,
-            label:'Italian',
+            label:'Clothing',
+        },
+        {
+            id:4,
+            checked:false,
+            label:'Books',
         },
     ])
     const handleSelectCategory = (event, value) =>
@@ -82,7 +87,7 @@ const Filter = () => {
         if (searchInput) {
             updatedList = updatedList.filter(
                 (item) =>
-                    item.title.toLowerCase().search(searchInput.toLowerCase().trim()) !==
+                    item.productName.toLowerCase().search(searchInput.toLowerCase().trim()) !==
                     -1
             );
         }
@@ -114,10 +119,10 @@ const Filter = () => {
                 <div className='home_panel-wrap'>
                     <FilterPanel
                         selectToggle={handleSelectCategory}
-                        selectedCategory={selectedCategory}
+                        selectedQuality={selectedCategory}
                         selectRating={handleSelectRating}
                         selectedRating={selectedRating}
-                        cuisines={cuisines}
+                        category={cuisines}
                         changeChecked={handleChangeChecked}
                         selectedPrice={selectedPrice}
                         changedPrice={handleChangePrice}
