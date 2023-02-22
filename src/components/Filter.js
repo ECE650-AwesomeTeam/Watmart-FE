@@ -5,6 +5,7 @@ import List from "./Filter/List";
 import '../css/Filter.css';
 import {dataList} from "./Filter/FilterConstants";
 
+
 const Filter = () => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [selectedRating, setSelectedRating] = useState([null]);
