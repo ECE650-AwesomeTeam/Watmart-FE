@@ -1,13 +1,13 @@
 import React from 'react';
 import {makeStyles, ToggleButton, ToggleButtonGroup} from '@mui/material';
-//
+
 // const useStyles = makeStyles({
 //     root: {
-//         width: '100%',
+//         // width: '100%',
 //         justifyContent: 'space-between',
-//     },
+//      },
 //     toggle: {
-//         fontFamily: `'Rale way', sans-serif`,
+//         fontFamily: `'Raleway', sans-serif`,
 //         fontSize: '.8rem',
 //         border: '1px solid rgba(0, 0, 0, 0.12)',
 //         borderRadius: '10px',
@@ -40,6 +40,8 @@ const FilterListToggle = ({options, value,selectToggle}) => {
         value={value}
         onChange={selectToggle}
         // className={classes.root}
+        color="primary"
+        exclusive
         >
             {options.map(({label,id,value})=> (
                 <ToggleButton
