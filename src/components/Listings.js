@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Header from "./Header";
-import Searchbar from "./Searchbar";
-import Categories from './Categories';
+import Categories from "./Categories";
 import Footer from "./Footer";
 import AdsList from "./AdsList";
+import AnimatingBar from "./AnimatingBar";
+
 import '../css/main.css';
 import Apt1 from '../assets/apt1.jpg';
 import Apt2 from '../assets/apt2.jpg';
@@ -160,7 +161,7 @@ const Listings: React.FC<{}>  = (props) => {
     return (
     <>
         <Header />
-        <Searchbar />
+        <AnimatingBar />
         <div className="listingsContainer">
             <Categories categories={categories} />
             <AdsList items={ads} />   
