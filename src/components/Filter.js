@@ -1,22 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import SearchBar from "./Filter/SearchBar";
-import FilterPanel from "./Filter/FilterPanel";
-import List from "./Filter/List";
+import FilterPanel from "./FilterPanel";
 import '../css/Filter.css';
-import {dataList} from "./Filter/FilterConstants";
+import {dataList} from "./FilterConstants";
 
 
 const Filter = () => {
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedQuality, setSelectedQuality] = useState(null);
     const [selectedRating, setSelectedRating] = useState([null]);
-    const [selectedPrice, setSelectedPrice] = useState([1, 3000]);
+    const [selectedPrice, setSelectedPrice] = useState([1, 1000]);
 
     // calling backend
     const [list, setList] = useState(dataList);
     const [resultsFound, setResultsFound] = useState(true);
     const [searchInput, setSearchInput] = useState('');
 
-    const [cuisines, setCuisines] = useState([
+    const [quality, setQuality] = useState([
         {
             id:1,
             checked:false,
@@ -39,17 +37,17 @@ const Filter = () => {
         },
     ])
     const handleSelectCategory = (event, value) =>
-        ! value ? null : setSelectedCategory(value)
+        ! value ? null : setSelectedQuality(value)
 
     const handleSelectRating = (event, value) =>
         ! value ? null : setSelectedRating(value)
 
     const handleChangeChecked = (id) => {
-        const cusinesStateList = cuisines;
-        const changeCheckedCuisines = cusinesStateList.map((item) =>
+        const qualityStateList = quality;
+        const changeCheckedCuisines = qualityStateList.map((item) =>
             item.id === id ? { ...item, checked: !item.checked } : item
         );
-        setCuisines(changeCheckedCuisines);
+        setQuality(changeCheckedCuisines);
     };
 
     const handleChangePrice = (event, value) => {
@@ -66,21 +64,21 @@ const Filter = () => {
             );
         }
 
-        // Category Filter
-        if (selectedCategory) {
+        // quality Filter
+        if (selectedQuality) {
             updatedList = updatedList.filter(
-                (item) => item.category === selectedCategory
+                (item) => item.category === selectedQuality
             );
         }
 
-        // Cuisine Filter
-        const cuisinesChecked = cuisines
+        // category Filter
+        const categoryChecked = quality
             .filter((item) => item.checked)
             .map((item) => item.label.toLowerCase());
 
-        if (cuisinesChecked.length) {
+        if (categoryChecked.length) {
             updatedList = updatedList.filter((item) =>
-                cuisinesChecked.includes(item.cuisine)
+                categoryChecked.includes(item.cuisine)
             );
         }
 
@@ -108,33 +106,23 @@ const Filter = () => {
 
     useEffect(() => {
         applyFilters();
-    }, [selectedRating, selectedCategory, cuisines, searchInput, selectedPrice]);
+    }, [selectedRating, selectedQuality, quality, searchInput, selectedPrice]);
 
     return (
-        <div className='home'>
-            {/* Search Bar */}
-            <SearchBar
-                value={searchInput}
-                changeInput={(e) => setSearchInput(e.target.value)} />
             <div className='home_panelList-wrap'>
                 <div className='home_panel-wrap'>
                     <FilterPanel
                         selectToggle={handleSelectCategory}
-                        selectedQuality={selectedCategory}
+                        selectedQuality={selectedQuality}
                         selectRating={handleSelectRating}
                         selectedRating={selectedRating}
-                        category={cuisines}
+                        category={quality}
                         changeChecked={handleChangeChecked}
                         selectedPrice={selectedPrice}
                         changedPrice={handleChangePrice}
                     />
                 </div>
-                {/* List & Empty View */}
-                <div className='home_list-wrap'>
-                    <List list={list} />
-                </div>
             </div>
-        </div>
     );
 
 }
