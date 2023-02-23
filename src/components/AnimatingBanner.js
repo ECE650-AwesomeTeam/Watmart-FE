@@ -1,5 +1,5 @@
 import React from "react";
-import videoBg from '../images/videoBg.mp4';
+import videoBg from '../assets/videoBg.mp4';
 import styles from '../css/AnimatingBanner.module.css';
 
 const AnimatingBanner = props => {

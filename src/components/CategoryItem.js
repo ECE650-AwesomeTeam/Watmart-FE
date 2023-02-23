@@ -1,15 +1,19 @@
 import React from "react";
 import '../css/CategoryItem.css';
-
+import { useNavigate } from 'react-router-dom';
+import ListingDetail from "./ListingDetail";
 const CategoryItem = (props) => {
+    const navigate = useNavigate();
+
+    const categoryClickHandler = () => {
+        navigate("/listings");
+    };
     return (
-        <div className="category-item-container">
-            <div className="image-container">
-                <img className="category-item-image" src={props.img} atl='' />
-            </div>
-            
+        <button className="category-item-container" key={props.key} onClick={categoryClickHandler}>
+            <img className="" src={props.img} atl='' />
+            <div className="overlay" />
             <p className="category-item-text">{props.categoryName}</p>
-        </div>
+        </button>    
     );
 }
 
