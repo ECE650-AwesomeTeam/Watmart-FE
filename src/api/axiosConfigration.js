@@ -1,16 +1,16 @@
-import axios from "axios";
+// import axios from "axios";
 
-const axiosConfig = axios.create({
-    withCredentials: true,
-    // baseURL: "https://.......",
-});
+// const axiosConfig = axios.create({
+//     withCredentials: true,
+//     // baseURL: "https://.......",
+// });
 
-axiosConfig.interceptors.response.use(
-    (response) => response,
-    (error) =>
-        Promise.reject(
-            (error.response && error.response.data) || "Something went wrong!"
-        )
-);
+// axiosConfig.interceptors.response.use(
+//     (response) => response,
+//     (error) =>
+//         Promise.reject(
+//             (error.response && error.response.data) || "Something went wrong!"
+//         )
+// );
 
-export default axiosConfig;
+// export default axiosConfig;
