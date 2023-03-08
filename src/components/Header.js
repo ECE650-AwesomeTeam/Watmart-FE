@@ -11,12 +11,15 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
+import useAuth from "../hooks/useAuth";
 
 
 const Header = () => {
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
     const navigate = useNavigate();
+
+    const { isAuthenticated } = useAuth();
 
     const [category, setCategory] = React.useState("");
 
@@ -77,19 +80,20 @@ const Header = () => {
                     </Button>
                 </div>
                 <div className="container1">
+                    {isAuthenticated ? "True" : "False"}
                     <ul className={click ? "nav-menu active" : "nav-menu"}>
                         <li>
                             <p>
                                 <span
                                     className="hyperlink"
-                                    onClick={loginClickHandler}
+                                    onClick={registerClickHandler}
                                 >
                                     Register
                                 </span>{" "}
                                 or{" "}
                                 <span
                                     className="hyperlink"
-                                    onClick={registerClickHandler}
+                                    onClick={loginClickHandler}
                                 >
                                     Sign-in
                                 </span>

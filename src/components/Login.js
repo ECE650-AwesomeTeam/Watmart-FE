@@ -14,6 +14,8 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import MD5 from "crypto-js/md5";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
@@ -34,6 +36,7 @@ const validationSchema = Yup.object().shape({
 
 function Login() {
     const { login } = useAuth();
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
 
@@ -44,7 +47,8 @@ function Login() {
             console.log("login");
             setLoading(true);
             try {
-                await login(values.email, values.password);
+                await login(values.email, MD5(values.password).toString());
+                navigate('/')
             } catch (e) {
                 setLoading(false);
             }

@@ -87,14 +87,14 @@ export const AuthProvider = ({ children }) => {
             email,
             password,
         });
-        const { accessToken } = response.data;
+        const { token } = response.data;
 
-        setSession(accessToken);
+        setSession(token);
 
         dispatch({
             type: "LOGIN",
             payload: {
-                accessToken,
+                token,
             },
         });
     };
@@ -112,7 +112,7 @@ export const AuthProvider = ({ children }) => {
             "phone": ""
         });
 
-        
+
 
         const { accessToken, user } = response.data;
 
