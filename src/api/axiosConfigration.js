@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosConfig = axios.create({
-    withCredentials: true,
-    // baseURL: "https://.......",
+    withCredentials: false,
+    baseURL: "http://159.203.44.151:9999",
 });
 
 axiosConfig.interceptors.response.use(
