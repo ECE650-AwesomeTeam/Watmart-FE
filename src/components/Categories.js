@@ -8,8 +8,8 @@ const Categories = (props) => {
         <div className="categories" >
             <h1 className="feature-title">Featured Categories</h1>
             <ul className="category-grid">
-                {props.categories.map(item => {
-                    return <CategoryItem img={item.category_img} categoryName={item.category_name} key={item.key} />
+                {props.categories.map((item,i) => {
+                    return <CategoryItem key={i} img={item.category_img} categoryName={item.category_name}  />
                 })}
                 
             </ul>      

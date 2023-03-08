@@ -7,8 +7,8 @@ const AdsList = (props) => {
         <div className="features">
             <h1 className="features-text">Top featured listing</h1>
             <div className="container">
-                {props.items.map(ad => {
-                    return <AdsItem img={ad.ads_img} desc={ad.ads_description} price={ad.ads_price} key={ad.ads_key}/>
+                {props.items.map((ad,i) => {
+                    return <AdsItem img={ad.ads_img} desc={ad.ads_description} price={ad.ads_price} key={i}/>
                 })}
             </div>
         </div>
