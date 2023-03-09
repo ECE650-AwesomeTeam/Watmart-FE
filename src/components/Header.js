@@ -19,7 +19,7 @@ const Header = () => {
     const handleClick = () => setClick(!click);
     const navigate = useNavigate();
 
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, email } = useAuth();
 
     const [category, setCategory] = React.useState("");
 
@@ -80,8 +80,7 @@ const Header = () => {
                     </Button>
                 </div>
                 <div className="container1">
-                    {isAuthenticated ? "True" : "False"}
-                    <ul className={click ? "nav-menu active" : "nav-menu"}>
+                    {isAuthenticated ? "Welcome! " + email : <ul className={click ? "nav-menu active" : "nav-menu"}>
                         <li>
                             <p>
                                 <span
@@ -99,7 +98,7 @@ const Header = () => {
                                 </span>
                             </p>
                         </li>
-                    </ul>
+                    </ul>}
                     <button className="btn">Post ad</button>
                 </div>
                 <div className="hamburger" onClick={handleClick}>

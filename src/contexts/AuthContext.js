@@ -5,7 +5,7 @@ import axios from "../api/axiosConfigration";
 const initialState = {
     isAuthenticated: false,
     isInitialised: false,
-    user: null,
+    email: "",
 };
 
 const isValidToken = (accessToken) => {
@@ -41,12 +41,13 @@ const reducer = (state, action) => {
             };
         }
         case "LOGIN": {
-            const { token } = action.payload;
+            const { token, email } = action.payload;
 
             return {
                 ...state,
                 isAuthenticated: true,
                 token,
+                email
             };
         }
         case "LOGOUT": {
@@ -95,6 +96,7 @@ export const AuthProvider = ({ children }) => {
             type: "LOGIN",
             payload: {
                 token,
+                email
             },
         });
     };

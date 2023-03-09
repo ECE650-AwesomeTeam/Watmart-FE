@@ -23,6 +23,8 @@ import useAuth from "../hooks/useAuth";
 import moment from 'moment'
 import MD5 from "crypto-js/md5";
 import dayjs from 'dayjs';
+import logo from '../assets/logo-no-background.png'
+import "../css/AnimationBg.css"
 
 
 const theme = createTheme();
@@ -78,9 +80,31 @@ function Signup() {
 
     return (
         <ThemeProvider theme={theme}>
+            <div class="background">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
-                <Grid item xs={6} >
+                <Grid item xs={7} >
                     <Box sx={{
                         my: 8,
                         mx: 4,
@@ -92,10 +116,10 @@ function Signup() {
                         <Typography component="h1" variant="h4">
                             Sign up for Watmart!
                         </Typography>
-                        <Image src="/logo/png/logo-no-background.png" fit="contain" duration={800} alt="" />
+                        <Image src={logo} fit="contain" duration={2000} alt="" height="60%" width="60%"/>
                     </Box>
                 </Grid>
-                <Grid item xs={6} component={Paper} elevation={6} square>
+                <Grid item xs={5} component={Paper} elevation={6} square>
                     <Box
                         sx={{
                             my: 8,
@@ -230,6 +254,9 @@ function Signup() {
                             </form>
                             <Grid container>
                                 <Grid item xs>
+                                    <Link href="/" variant="body2">
+                                        {"Back to main page"}
+                                    </Link>
                                 </Grid>
                                 <Grid item>
                                     <Link href="/login" variant="body2">
