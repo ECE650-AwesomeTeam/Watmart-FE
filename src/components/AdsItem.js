@@ -11,7 +11,7 @@ const AdsItem = (props) => {
     };
 
     return (
-        <figure onClick={listingClickHandler}>
+        <figure data-testid="listing" onClick={listingClickHandler}>
            <img src={props.img} atl='' />
        
        

@@ -100,6 +100,7 @@ function Login() {
                     />
                     <form onSubmit={formik.handleSubmit}>
                         <TextField
+                        data-testid="textfield-01"
                             margin="normal"
                             required
                             fullWidth
@@ -120,6 +121,7 @@ function Login() {
                         />
                         <TextField
                             margin="normal"
+                            data-testid="textfield-02"
                             required
                             fullWidth
                             onChange={formik.handleChange}
@@ -152,6 +154,7 @@ function Login() {
                         />
                         <LoadingButton
                             type="submit"
+                            data-testid="login-button"
                             fullWidth
                             loading={loading}
                             variant="contained"
