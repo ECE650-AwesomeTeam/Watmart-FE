@@ -5,7 +5,7 @@ import axios from "../api/axiosConfigration";
 const initialState = {
     isAuthenticated: false,
     isInitialised: false,
-    user: null,
+    email: "",
 };
 
 const isValidToken = (accessToken) => {
@@ -31,22 +31,23 @@ const setSession = (accessToken) => {
 const reducer = (state, action) => {
     switch (action.type) {
         case "INIT": {
-            const { isAuthenticated, user } = action.payload;
+            const { isAuthenticated, token } = action.payload;
 
             return {
                 ...state,
                 isAuthenticated,
                 isInitialised: true,
-                user,
+                token,
             };
         }
         case "LOGIN": {
-            const { user } = action.payload;
+            const { token, email } = action.payload;
 
             return {
                 ...state,
                 isAuthenticated: true,
-                user,
+                token,
+                email
             };
         }
         case "LOGOUT": {
@@ -57,12 +58,12 @@ const reducer = (state, action) => {
             };
         }
         case "REGISTER": {
-            const { user } = action.payload;
+            const { token } = action.payload;
 
             return {
                 ...state,
                 isAuthenticated: true,
-                user,
+                token,
             };
         }
         default: {
@@ -83,28 +84,37 @@ export const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const login = async (email, password) => {
-        const response = await axios.post("/api/auth/login", {
+        const response = await axios.post("/login", {
             email,
             password,
         });
-        const { accessToken, user } = response.data;
+        const { token } = response.data;
 
-        setSession(accessToken);
+        setSession(token);
 
         dispatch({
             type: "LOGIN",
             payload: {
-                user,
+                token,
+                email
             },
         });
     };
 
-    const register = async (email, username, password) => {
-        const response = await axios.post("/api/auth/register", {
+    const register = async (email, firstname, lastname, password, birthday) => {
+        const response = await axios.post("/signup", {
             email,
-            username,
+            "firstName": firstname,
+            "lastName": lastname,
             password,
+            birthday,
+            "gender": "",
+            "watcardID": "",
+            "occupation": "",
+            "phone": ""
         });
+
+
 
         const { accessToken, user } = response.data;
 

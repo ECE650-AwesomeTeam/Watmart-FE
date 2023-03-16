@@ -14,6 +14,10 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import MD5 from "crypto-js/md5";
+import { useNavigate } from "react-router-dom";
+import "../css/AnimationBg.css"
+import logo from "../assets/logo-no-background.png"
 
 const theme = createTheme();
 
@@ -25,15 +29,14 @@ const initialValues = {
 
 const validationSchema = Yup.object().shape({
     password: Yup.string()
-        .min(6, "Password must be more than 6 character length")
-        .required("Password is required"),
+        .min(6, "Password must be more than 6 character length"),
     email: Yup.string()
         .email("Invalid email address")
-        .required("Email is required"),
 });
 
 function Login() {
     const { login } = useAuth();
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
 
@@ -44,7 +47,8 @@ function Login() {
             console.log("login");
             setLoading(true);
             try {
-                await login(values.email, values.password);
+                await login(values.email, MD5(values.password).toString());
+                navigate('/')
             } catch (e) {
                 setLoading(false);
             }
@@ -53,6 +57,28 @@ function Login() {
 
     return (
         <ThemeProvider theme={theme}>
+            <div class="background">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -67,9 +93,9 @@ function Login() {
                         Welcome to Watmart
                     </Typography>
                     <Image
-                        src="/logo/png/logo-color.png"
-                        fit="fill"
-                        duration={800}
+                        src={logo}
+                        fit="contain"
+                        duration={2000}
                         alt=""
                     />
                     <form onSubmit={formik.handleSubmit}>
@@ -121,9 +147,9 @@ function Login() {
                                     onChange={formik.handleChange}
                                     value={formik.values.remember}
                                     checked={formik.values.remember}
-                                    color="primary"
                                 />
                             }
+                            className="checkbox"
                             label="Remember me"
                         />
                         <LoadingButton
@@ -138,9 +164,9 @@ function Login() {
                         </LoadingButton>
                         <Grid container>
                             <Grid item xs>
-                                {/*<Link href="#" variant="body2">*/}
-                                {/*    Forgot password?*/}
-                                {/*</Link>*/}
+                                <Link href="/" variant="body2">
+                                    {"Back to main page"}
+                                </Link>
                             </Grid>
                             <Grid item>
                                 <Link href="/signup" variant="body2">
