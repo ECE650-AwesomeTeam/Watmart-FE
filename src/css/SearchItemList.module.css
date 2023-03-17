@@ -4,11 +4,12 @@
     justify-content: center;
 }
 .content-container {
-    padding: 0 20%;
+    padding: 0 10%;
     display: flex;
     flex-direction: row;
     justify-content: start;
     width: auto;
+    /* background-color: red; */
 }
 
 .filter-container {
@@ -21,5 +22,7 @@
 }
 
 .items-container {
-    width: 1fr;
+    width: 100%;
+    padding: 3.4rem 1.5rem;
+    /* background-color: blue; */
 }
