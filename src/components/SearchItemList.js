@@ -2,6 +2,7 @@ import React from "react";
 import Header from './Header';
 import styles from '../css/SearchItemList.module.css';
 import Filter from "./Filter";
+import Sort from "./Sort";
 
 const SearchItemList = props => {
     return (
@@ -14,6 +15,7 @@ const SearchItemList = props => {
                     </div>
                 </div>
                 <div className={styles["items-container"]}>
+                    <Sort />
                 </div>
             </div>
         </div>
