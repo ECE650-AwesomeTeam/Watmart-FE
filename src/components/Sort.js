@@ -1,16 +1,31 @@
 import React from "react";
 import styles from '../css/Sort.module.css';
 import { BsFillGridFill, BsList } from "react-icons/bs";
+import { useFilterContext } from "../contexts/FilterContext";
+import classNames from 'classnames';
 
 const Sort = () => {
+    const { grid_view, setGridView, setListView } = useFilterContext();
+    const gridClassnames = classNames(
+        styles["sort-btn"],
+        { [styles["active"]]: grid_view}
+    );
+    const listClassnames = classNames(
+        styles["sort-btn"],
+        { [styles["active"]]: !grid_view}
+    );
     return (
         <div className={styles.container}>
             {/* 1st column */}
             <div className={styles["sorting-list--grid"]}>
-                <button className={styles["sort-btn"]}>
+                <button 
+                className={gridClassnames}
+                onClick={setGridView}>
                     <BsFillGridFill className={styles.icon} />
                 </button>
-                <button className={styles["sort-btn"]}>
+                <button 
+                className={listClassnames}
+                onClick={setListView}>
                     <BsList className={styles.icon} />
                 </button>
             </div>
