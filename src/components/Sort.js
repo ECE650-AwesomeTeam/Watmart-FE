@@ -5,7 +5,7 @@ import { useFilterContext } from "../contexts/FilterContext";
 import classNames from 'classnames';
 
 const Sort = () => {
-    const { grid_view, setGridView, setListView } = useFilterContext();
+    const { grid_view, setGridView, setListView, filter_products } = useFilterContext();
     const gridClassnames = classNames(
         styles["sort-btn"],
         { [styles["active"]]: grid_view}
@@ -32,7 +32,7 @@ const Sort = () => {
 
             { /* 2nd column */}
             <div className={styles["product-data"]}>
-                <p>20 Product Avalibale</p>
+                <p>{`${filter_products.length}`} Product Available</p>
             </div>
 
             { /* 3rd column */}
