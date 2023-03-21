@@ -12,6 +12,7 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import useAuth from "../hooks/useAuth";
+import Avatar from '@mui/material/Avatar';
 
 
 const Header = () => {
@@ -80,7 +81,7 @@ const Header = () => {
                     </Button>
                 </div>
                 <div className="container1">
-                    {isAuthenticated ? "Welcome! " + email : <ul className={click ? "nav-menu active" : "nav-menu"}>
+                    {isAuthenticated ? <Avatar {...stringAvatar(email)} /> : <ul className={click ? "nav-menu active" : "nav-menu"}>
                         <li>
                             <p>
                                 <span
