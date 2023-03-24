@@ -12,14 +12,22 @@ import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import useAuth from "../hooks/useAuth";
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 
 const Header = () => {
     const [click, setClick] = useState(false);
+    const [open, setOpen] = useState(false);
     const handleClick = () => setClick(!click);
     const navigate = useNavigate();
 
-    const { isAuthenticated, email } = useAuth();
+    const { isAuthenticated, email, logout } = useAuth();
 
     const [category, setCategory] = React.useState("");
 
@@ -34,6 +42,19 @@ const Header = () => {
     const registerClickHandler = () => {
         navigate("/signup");
     };
+
+    const handleLogoutClick = () => {
+        setOpen(true)
+    }
+
+    const handleCloseNo = () => {
+        setOpen(false);
+    }
+
+    const handleCloseYes = () => {
+        setOpen(false);
+        logout();
+      };
 
     return (
         <div className="header">
@@ -80,7 +101,39 @@ const Header = () => {
                     </Button>
                 </div>
                 <div className="container1">
-                    {isAuthenticated ? "Welcome! " + email : <ul className={click ? "nav-menu active" : "nav-menu"}>
+                    {isAuthenticated ? 
+                    <Stack direction="row" spacing={2}>
+                        <Avatar>{email.toUpperCase().charAt(0)}</Avatar>
+                        <Button variant="outlined" color="error" onClick={handleLogoutClick}>
+                            Logout
+                        </Button>
+                        <Dialog
+                            open={open}
+                            onClose={handleCloseNo}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                        >
+                            <DialogTitle id="alert-dialog-title">
+                            {"Confirm to logout?"}
+                            </DialogTitle>
+                            <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                                Are you sure you want to logout?
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={handleCloseNo}>No</Button>
+                            <Button onClick={handleCloseYes} autoFocus>
+                                Yes
+                            </Button>
+                            </DialogActions>
+                        </Dialog>
+                        <Button variant="contained">
+                            Post Ad
+                        </Button>
+                    </Stack>
+                    : 
+                    <ul className={click ? "nav-menu active" : "nav-menu"}>
                         <li>
                             <p>
                                 <span
@@ -99,7 +152,7 @@ const Header = () => {
                             </p>
                         </li>
                     </ul>}
-                    <button className="btn">Post ad</button>
+                    {/* <button className="btn">Post ad</button> */}
                 </div>
                 <div className="hamburger" onClick={handleClick}>
                     {click ? (

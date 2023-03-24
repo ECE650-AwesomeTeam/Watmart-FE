@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 
 const axiosConfig = axios.create({
     withCredentials: false,
@@ -13,4 +13,4 @@ const axiosConfig = axios.create({
 //         )
 // );
 
-// export default axiosConfig;
+export default axiosConfig;
