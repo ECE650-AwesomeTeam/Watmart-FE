@@ -81,7 +81,8 @@ const Listings: React.FC<{}>  = (props) => {
         <AnimatingBar />
         <div className="listingsContainer">
             <Categories categories={categories} />
-            <AdsList products={products} />   
+            <h1 className="features-text">Top featured listing</h1>
+            <AdsList products={products} numCol={5}/>   
         </div>
         <Footer />
         

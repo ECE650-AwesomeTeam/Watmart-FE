@@ -2,11 +2,10 @@ import React from "react";
 import '../css/Features.css';
 import AdsItem from "./AdsItem";
 
-const AdsList = ({ products }) => {
+const AdsList = ({ products, numCol }) => {
     return (
         <div className="features">
-            <h1 className="features-text">Top featured listing</h1>
-            <div className="container">
+            <div style={{'--num-cols':`${numCol}`}} className="container">
                 {products.map(item => {
                     const { id, name, image, price, description } = item;
                     return <AdsItem img={image} desc={description} price={price} key={id}/>
