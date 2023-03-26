@@ -11,6 +11,7 @@ const initialState = {
     filters: {
         text: "",
         category: "all",
+        quality: "all",
         maxPrice: 0,
         price: 0,
         minPrice: 0,
