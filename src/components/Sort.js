@@ -5,7 +5,7 @@ import { useFilterContext } from "../contexts/FilterContext";
 import classNames from 'classnames';
 
 const Sort = () => {
-    const { grid_view, setGridView, setListView, filter_products } = useFilterContext();
+    const { grid_view, setGridView, setListView, filter_products, sorting } = useFilterContext();
     const gridClassnames = classNames(
         styles["sort-btn"],
         { [styles["active"]]: grid_view}
@@ -42,7 +42,8 @@ const Sort = () => {
                 <select
                     name="sort"
                     id="sort"
-                    className={styles["sort-selection--style"]}>
+                    className={styles["sort-selection--style"]}
+                    onChange={sorting}>
                     <option value="lowest">Price(lowest)</option>
                     <option value="#" disabled></option>
                     <option value="highest">Price(highest)</option>
