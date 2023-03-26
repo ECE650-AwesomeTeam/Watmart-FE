@@ -27,7 +27,7 @@ const ProductProvider = ({ children }) => {
     };
 
     const getSingleProduct = async (url) => {
-        dispatch({type: "SET_SINGLE_PRODUCT" });
+        dispatch({type: "SET_LOADING" });
         try {
             const response = await axios.get(url);
             const product = await response.data;

@@ -8,7 +8,7 @@ const AdsList = ({ products, numCol }) => {
             <div style={{'--num-cols':`${numCol}`}} className="container">
                 {products.map(item => {
                     const { id, name, image, price, description, category } = item;
-                    return <AdsItem img={image} desc={description} price={price} key={id} category={category} name={name}/>
+                    return <AdsItem img={image} desc={description} price={price} key={id} category={category} name={name} id={id}/>
                 })}
             </div>
         </div>

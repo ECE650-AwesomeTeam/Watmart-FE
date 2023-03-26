@@ -4,11 +4,11 @@ import {FaRegHeart} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import FormatPrice from "./FormatPrice";
 
-const AdsItem = ({ img, desc, price, category, name}) => {
+const AdsItem = ({ img, desc, price, category, name, id}) => {
     const navigate = useNavigate();
 
     const listingClickHandler = () => {
-        navigate("/listing/300");
+        navigate(`/listing/${id}`);
     };
 
     return (
