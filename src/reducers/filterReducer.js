@@ -2,10 +2,13 @@ const filterReducer = (state, action) => {
   const { all_products, filter_products } = state;
     switch (action.type) {
         case "LOAD_FILTER_PRODUCTS":
+          let priceAttrs = action.payload.map(item => item.price);
+          let maxPrice = Math.max(...priceAttrs);
             return {
                 ...state,
                 filter_products: [...action.payload],
                 all_products: [...action.payload],
+                filters: {...state.filters, maxPrice, price: maxPrice},
             };
         case "SET_GRID_VIEW":
             return {
@@ -67,22 +70,35 @@ const filterReducer = (state, action) => {
             });
           }
           
-          // if (category !== "all") {
-          //   temp_filtered_products = temp_filtered_products.filter (item => {
-          //     return item.category === category;
-          //   });
-          // }
-          // if (price === 0) {
-          //   temp_filtered_products = temp_filtered_products.filter(item => item.price === price);
-          // } else {
-          //   temp_filtered_products = temp_filtered_products.filter(
-          //     (item) => item.price <= price
-          //   );
-          // }
+          if (category !== "all") {
+            temp_filtered_products = temp_filtered_products.filter (item => {
+              return item.category === category;
+            });
+          }
+          if (price === 0) {
+            temp_filtered_products = temp_filtered_products.filter(item => item.price === price);
+          } else {
+            temp_filtered_products = temp_filtered_products.filter(
+              (item) => item.price <= price
+            );
+          }
           console.log("filter data" + temp_filtered_products);
           return {
             ...state,
             filter_products: temp_filtered_products,
+          };
+        case "CLEAR_FILTERS":
+          return {
+            ...state,
+            filters: {
+              ...state.filters,
+              text: "",
+              category: "all",
+              quality: "all",
+              maxPrice: state.filters.maxPrice,
+              price: state.filters.maxPrice,
+              minPrice: 0,
+            }
           };
         default:
             return state; 
