@@ -10,7 +10,7 @@
 .features .container {
     --gap: 1.2rem;
     --num-cols:  5;
-    --row-height: 240px;
+    --row-height: 270px;
 
     padding: 1rem;
     display: grid;
