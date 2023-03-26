@@ -26,7 +26,7 @@ const Filter = () => {
                 <form onSubmit={(i) => i.preventDefault()}>
                     <input
                         type="text"
-                        name='text'
+                        name="text"
                         placeholder='Search'
                         value={text} 
                         onChange={updateFilterValue} />

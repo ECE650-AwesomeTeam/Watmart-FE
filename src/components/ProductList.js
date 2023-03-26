@@ -5,7 +5,7 @@ import AdsList from "./AdsList";
 
 const ProductList = () => {
     const { filter_products, grid_view } = useFilterContext();
-
+    console.log("filter data = " + filter_products);
     if (grid_view === true) {
         return <AdsList numCol={4} products={filter_products}/>
     }
