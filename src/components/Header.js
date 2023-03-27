@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 
 
-const Header = () => {
+const Header = ({ isSearchBarHidden }) => {
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
     const navigate = useNavigate();
@@ -39,7 +39,7 @@ const Header = () => {
                     <img className="logo" src={Logo} alt="" />
                     <span>Watmart</span>
                 </h1>
-                <div className="searchpart">
+                {!isSearchBarHidden && <div className="searchpart">
                     <TextField
                         fullWidth
                         id="search"
@@ -75,7 +75,8 @@ const Header = () => {
                     <Button variant="outlined" color="error">
                         Search
                     </Button>
-                </div>
+                </div>}
+                
                 <div className="container1">
                     <ul className={click ? "nav-menu active" : "nav-menu"}>
                         <li>

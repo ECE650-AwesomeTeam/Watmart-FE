@@ -4,6 +4,7 @@ import styles from '../css/SearchItemList.module.css';
 import Filter from "./Filter";
 import Sort from "./Sort";
 import ProductList from "./ProductList";
+import Footer from "./Footer";
 const SearchItemList = props => {
     return (
         <div className={styles.container}>
@@ -19,6 +20,7 @@ const SearchItemList = props => {
                     <ProductList />
                 </div>
             </div>
+            <Footer />
         </div>
     )
 };
