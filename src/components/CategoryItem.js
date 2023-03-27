@@ -9,7 +9,7 @@ const CategoryItem = (props) => {
         navigate("/listings");
     };
     return (
-        <button className="category-item-container" key={props.key} onClick={categoryClickHandler}>
+        <button data-testid="item" className="category-item-container"  onClick={categoryClickHandler}>
             <img className="" src={props.img} atl='' />
             <div className="overlay" />
             <p className="category-item-text">{props.categoryName}</p>

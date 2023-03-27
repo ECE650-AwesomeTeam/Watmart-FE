@@ -26,7 +26,6 @@ const AdsItem = ({ img, desc, price, category, name, id}) => {
                     <FaRegHeart className={styles["ads-bookmark-icon"]} />
                 </div>
             </div>
-
         </figure>
         
     )
