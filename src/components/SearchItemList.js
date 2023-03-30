@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from './Header';
 import styles from '../css/SearchItemList.module.css';
 import Filter from "./Filter";
 import Sort from "./Sort";
 import ProductList from "./ProductList";
 import Footer from "./Footer";
-const SearchItemList = props => {
+import { useParams } from "react-router-dom";
+
+const SearchItemList = () => {
+    const [category, setCategory] = useState("");
+    const { id } = useParams();
+    useEffect(() => {
+        setCategory(id);
+    },[id]);
+    
     return (
         <div className={styles.container}>
             <Header />
@@ -17,7 +25,7 @@ const SearchItemList = props => {
                 </div>
                 <div className={styles["items-container"]}>
                     <Sort />
-                    <ProductList />
+                    <ProductList category={category}/>
                 </div>
             </div>
             <Footer />

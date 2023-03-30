@@ -54,7 +54,7 @@ const Listings: React.FC<{}>  = (props) => {
         },
         {
             catgory_id: 6,
-            category_name: "Collectibles",
+            category_name: "Collections",
             category_img: Apt6
         },
         {

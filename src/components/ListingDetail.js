@@ -9,27 +9,24 @@ import FormatPrice from "./FormatPrice";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
 import Footer from "./Footer";
-import { FortTwoTone } from "@mui/icons-material";
-const API = "https://api.pujakaitem.com/api/products";
+
 
 const ListingDetail = () => {
     const { getSingleProduct, singleProduct, isSingleLoading } = useProductContext();
     const { id } = useParams();
     
     const {
-        name,
-        company,
-        price,
-        description,
-        category,
-        stock,
-        stars,
-        reviews,
-        image,
-      } = singleProduct;
-
+        title, 
+        images, 
+        price, 
+        content, 
+        category, 
+        quality, 
+        user, 
+        status } = singleProduct;
+    console.log("images = " + images);
     useEffect(() => {
-        getSingleProduct(`${API}?id=${id}`);
+        getSingleProduct(id);
     },[]);
     
     if (isSingleLoading) {
@@ -40,18 +37,18 @@ const ListingDetail = () => {
         <>
         <div className={styles["root-container"]}>
             <Header isSearchBarHidden={true}/>
-            <PageNavigation title={name} />
+            <PageNavigation title={title} />
             <div className={styles.container}>
                 <div className={`${styles.grid} ${styles["grid-two-column"]}`}>
                     <div className={styles.product_images}>
-                        <Gallery images={image} />
+                        <Gallery images={images.map(url => { return "http://159.203.44.151:9999/media/" + url})} />
                     </div>
                     <div className={styles["product-data"]}>
-                        <h2>{name}</h2>
+                        <h2>{title}</h2>
                         <p className={styles["product-data-price"]}>
                             Price: <FormatPrice price={price} />
                         </p>
-                        <p>{description}</p>
+                        <p>{content}</p>
                         <div className={styles["product-status"]}>
                             <div className={styles["product-item-status"]}>
                                 <TbTruckDelivery className={styles["status-icon"]} />
@@ -71,12 +68,12 @@ const ListingDetail = () => {
                             </div>
                         </div>
                         <div className={styles["product-data-info"]}>
-                            <p>Availability: <span>{stock > 0? "In stock" : "Not available"}</span></p>
-                            <p>Seller: <span>{id}</span></p>
-                            <p>Brand: <span>{company}</span></p>
+                            <p>Availability: <span>{status === "Available" ? "In stock" : "Not available"}</span></p>
+                            <p>Seller: <span>{user}</span></p>
+                            <p>Condition: <span>{quality}</span></p>
                         </div>
                         <hr />
-                        { stock > 0 && <button className="btn">Buy item</button>}
+                        { status === "Available" && <button className="btn">Buy item</button>}
                     </div>
                 </div>
                 

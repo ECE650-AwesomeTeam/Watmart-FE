@@ -4,7 +4,7 @@ import {FaRegHeart} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import FormatPrice from "./FormatPrice";
 
-const AdsItem = ({ img, desc, price, category, name, id}) => {
+const AdsItem = ({ img, desc, price, category, name, id, quality, status, user }) => {
     const navigate = useNavigate();
 
     const listingClickHandler = () => {
@@ -14,7 +14,7 @@ const AdsItem = ({ img, desc, price, category, name, id}) => {
     return (
         <figure className={styles.figure} onClick={listingClickHandler}>
             <div className={styles["img-container"]}>
-                <img src={img} atl='' />
+                <img src={img[0]} atl='' />
                 <figcaption className={styles.caption}>{category}</figcaption>
             </div>
             
