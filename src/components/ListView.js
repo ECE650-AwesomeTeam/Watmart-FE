@@ -6,8 +6,8 @@ const ListView = ({ products }) => {
     return (
         <div className={styles.container}>
             { products.map(item => {
-                const { id, name, image, price, description } = item;
-                return <ListItem name={name} img={image} desc={description} price={price} key={id}/>
+                const { id, title, images, price, content, category, quality, user, status } = item;
+                return <ListItem name={title} img={"http://159.203.44.151:9999/media/" + images[0]} desc={content} price={price} id={id}/>
             })}
         </div>
     )

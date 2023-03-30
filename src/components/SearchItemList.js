@@ -20,11 +20,11 @@ const SearchItemList = () => {
             <div className={styles["content-container"]}>
                 <div className={styles["filter-container"]}>
                     <div className={styles.filter}>
-                        <Filter />
+                        <Filter isCategoryHidden={id !== "all" }/>
                     </div>
                 </div>
                 <div className={styles["items-container"]}>
-                    <Sort />
+                    <Sort category={category}/>
                     <ProductList category={category}/>
                 </div>
             </div>

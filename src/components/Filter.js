@@ -3,7 +3,7 @@ import { useFilterContext  } from "../contexts/FilterContext";
 import styles from '../css/Filter.module.css';
 import FormatPrice from './FormatPrice';
 
-const Filter = () => {
+const Filter = ({ isCategoryHidden }) => {
     const { 
         filters:{ text, category, quality, price, maxPrice, minPrice},
         all_products, 
@@ -42,14 +42,15 @@ const Filter = () => {
                                 type="button"
                                 name="quality"
                                 value={item}
-                                className={index === 0 ? styles.active: ""}>
+                                className={item.toLowerCase() === quality ? styles.active: ""}
+                                onClick={updateFilterValue}>
                                     {item}
                                 </button>
                         )
                     })}
                 </div>
             </div>
-            <div className={styles["filter-category"]}>
+            {!isCategoryHidden && <div className={styles["filter-category"]}>
                 <h3>Category</h3>
                 <div>
                     {categoryData.map((item,index) => {
@@ -66,7 +67,7 @@ const Filter = () => {
                         )
                     })}
                 </div>
-            </div>
+            </div>}
             
             <div className={styles.filter_price}>
                 <h3>Price</h3>

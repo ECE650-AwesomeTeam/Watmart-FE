@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import styles from '../css/ListItem.module.css';
 import FormatPrice from "./FormatPrice";
 
-const ListItem = ({ desc, img, price, name }) => {
+const ListItem = ({ desc, img, price, name, id }) => {
     const navigate = useNavigate();
     const listingClickHandler = () => {
-        navigate("/listing/300");
+        navigate("/listing/"+ id);
     };
     return (
         <div className={`${styles.card} ${styles.grid} ${styles["grid-two-column"]}`} onClick={listingClickHandler}>

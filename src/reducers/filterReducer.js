@@ -39,11 +39,11 @@ const filterReducer = (state, action) => {
                 }
         
                 if (sorting_value === "a-z") {
-                  return a.name.localeCompare(b.name);
+                  return a.title.localeCompare(b.title);
                 }
         
                 if (sorting_value === "z-a") {
-                  return b.name.localeCompare(a.name);
+                  return b.title.localeCompare(a.title);
                 }
               };
               newSortData = tempSortedProducts.sort(sortingProducts);
@@ -62,11 +62,11 @@ const filterReducer = (state, action) => {
               };
         case "FILTER_PRODUCTS":
           let temp_filtered_products = [...all_products];
-          const { text, category, price } = state.filters;
+          const { text, category, price, quality } = state.filters;
           
           if (text) {
             temp_filtered_products = temp_filtered_products.filter (item => {
-              return item.name.toLowerCase().includes(text);
+              return item.title.toLowerCase().includes(text);
             });
           }
           
@@ -82,7 +82,9 @@ const filterReducer = (state, action) => {
               (item) => item.price <= price
             );
           }
-          console.log("filter data" + temp_filtered_products);
+          if (quality !== "all") {
+            temp_filtered_products = temp_filtered_products.filter(item => item.quality.toLowerCase() === quality);
+          }
           return {
             ...state,
             filter_products: temp_filtered_products,

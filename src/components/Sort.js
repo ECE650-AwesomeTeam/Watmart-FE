@@ -4,7 +4,7 @@ import { BsFillGridFill, BsList } from "react-icons/bs";
 import { useFilterContext } from "../contexts/FilterContext";
 import classNames from 'classnames';
 
-const Sort = () => {
+const Sort = ({ category }) => {
     const { grid_view, setGridView, setListView, filter_products, sorting } = useFilterContext();
     const gridClassnames = classNames(
         styles["sort-btn"],
@@ -32,7 +32,7 @@ const Sort = () => {
 
             { /* 2nd column */}
             <div className={styles["product-data"]}>
-                <p>{`${filter_products.length}`} Product Available</p>
+                <p>{`${filter_products.filter(item=> item.category === category).length}`} Product Available</p>
             </div>
 
             { /* 3rd column */}
