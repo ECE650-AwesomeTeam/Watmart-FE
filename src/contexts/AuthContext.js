@@ -88,9 +88,20 @@ export const AuthProvider = ({ children }) => {
             email,
             password,
         });
-        const { token } = response.data;
+
+        const { token, result, msg } = response.data;
 
         setSession(token);
+
+        if(result == "Failed") {
+            dispatch({
+                type: "LOGIN_FAIL",
+                payload: {
+                    msg
+                }
+            })
+            return msg;
+        }
 
         dispatch({
             type: "LOGIN",
@@ -116,14 +127,16 @@ export const AuthProvider = ({ children }) => {
 
 
 
-        const { accessToken, user } = response.data;
+        const { result, msg } = response.data;
 
-        setSession(accessToken);
+        if(result == "Failed") {
+            return msg;
+        }
 
         dispatch({
             type: "REGISTER",
             payload: {
-                user,
+                result,
             },
         });
     };
