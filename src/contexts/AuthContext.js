@@ -89,9 +89,8 @@ export const AuthProvider = ({ children }) => {
             password,
         });
 
-        const { token, result, msg } = response.data;
+        const { result, msg } = response.data;
 
-        setSession(token);
 
         if(result == "Failed") {
             dispatch({
@@ -102,6 +101,11 @@ export const AuthProvider = ({ children }) => {
             })
             return msg;
         }
+
+        const { token } = response.data.data
+
+        console.log(token)
+        setSession(token);
 
         dispatch({
             type: "LOGIN",
