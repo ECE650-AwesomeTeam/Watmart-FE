@@ -22,9 +22,12 @@ import { useState, useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import moment from 'moment'
 import MD5 from "crypto-js/md5";
+import { useNavigate } from "react-router-dom";
 import dayjs from 'dayjs';
 import logo from '../assets/logo-no-background.png'
 import "../css/AnimationBg.css"
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 
 const theme = createTheme();
@@ -56,6 +59,7 @@ const validationSchema = Yup.object().shape({
 
 function Signup() {
     const { register } = useAuth()
+    const navigate = useNavigate();
     
     const [dob, setDob] = React.useState(dayjs(new Date()));
     useEffect(() => {
@@ -63,6 +67,8 @@ function Signup() {
     })
 
     const [loading, setLoading] = useState(false);
+    const [registerFailed, setRegisterFailed] = useState("");
+    const [severity, setSeverity] = useState("")
 
     const formik = useFormik({
         initialValues: initialValues,
@@ -71,7 +77,20 @@ function Signup() {
             console.log("signup");
             try {
                 console.log(values)
-                await register(values.email, values.firstName, values.lastName, MD5(values.password).toString(), values.birthday)
+                let errorMsg = await register(values.email, values.firstName, values.lastName, MD5(values.password).toString(), values.birthday)
+                if(errorMsg) {
+                    setSeverity("error")
+                    setRegisterFailed(errorMsg)
+                    setTimeout(() => {
+                        setRegisterFailed("")
+                    }, 5000);
+                } else {
+                    setSeverity("success")
+                    setRegisterFailed("Success! Redirecting you to login page...")
+                    setTimeout(() => {
+                        navigate('/login')
+                    }, 1500);
+                }
             } catch (e) {
                 setLoading(false);
             }
@@ -120,6 +139,10 @@ function Signup() {
                     </Box>
                 </Grid>
                 <Grid item xs={5} component={Paper} elevation={6} square>
+                    { registerFailed !== "" ? <Alert severity="error" onClose={() => {setRegisterFailed("")}}>
+                        <AlertTitle>Register Failed</AlertTitle>
+                        {registerFailed}
+                    </Alert> : null}
                     <Box
                         sx={{
                             my: 8,
