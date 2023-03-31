@@ -68,7 +68,7 @@ function Login() {
 
     return (
         <ThemeProvider theme={theme}>
-            <div class="background">
+            <div className="background">
                 <span></span>
                 <span></span>
                 <span></span>

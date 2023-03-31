@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }) => {
         const { result, msg } = response.data;
 
 
-        if(result == "Failed") {
+        if(result === "Failed") {
             dispatch({
                 type: "LOGIN_FAIL",
                 payload: {
@@ -133,7 +133,7 @@ export const AuthProvider = ({ children }) => {
 
         const { result, msg } = response.data;
 
-        if(result == "Failed") {
+        if(result === "Failed") {
             return msg;
         }
 

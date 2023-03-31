@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import AdsList from "./AdsList";
 import AnimatingBar from "./AnimatingBar";
 
+
 import '../css/main.css';
 import { useProductContext } from "../contexts/ProductContext";
 import Apt1 from '../assets/apt1.jpg';
@@ -17,6 +18,7 @@ import Apt6 from '../assets/apt6.jpg';
 import Apt7 from '../assets/apt7.jpg';
 import Apt8 from '../assets/apt8.jpg';
 import Apt9 from '../assets/apt9.jpg';
+import AllCategory from "../assets/all.jpg";
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -24,9 +26,14 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-const Listings: React.FC<{}>  = (props) => {
+const Listings = (props) => {
 
     const categories = [
+        {
+            catgory_id: 0,
+            category_name: "All",
+            category_img: AllCategory
+        },
         {
             catgory_id: 1,
             category_name: "Electronics",
@@ -59,7 +66,7 @@ const Listings: React.FC<{}>  = (props) => {
         },
         {
             catgory_id: 7,
-            category_name: "Music instruments",
+            category_name: "Instruments",
             category_img: Apt7
         },
         {
@@ -69,7 +76,7 @@ const Listings: React.FC<{}>  = (props) => {
         },
         {
             catgory_id: 9,
-            category_name: "Home appliances",
+            category_name: "Appliances",
             category_img: Apt9
         }
     ];
