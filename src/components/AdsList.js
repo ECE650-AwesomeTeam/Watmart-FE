@@ -2,13 +2,13 @@ import React from "react";
 import '../css/Features.css';
 import AdsItem from "./AdsItem";
 
-const AdsList = (props) => {
+const AdsList = ({ products, numCol }) => {
     return (
         <div className="features">
-            <h1 className="features-text">Top featured listing</h1>
-            <div className="container">
-                {props.items.map((ad,i) => {
-                    return <AdsItem img={ad.ads_img} desc={ad.ads_description} price={ad.ads_price} key={i}/>
+            <div style={{'--num-cols':`${numCol}`}} className="container">
+                {products.map(item => {
+                    const { id, title, images, price, content, category, quality, user, status } = item;
+                    return <AdsItem img={images.map(url => { return "http://159.203.44.151:9999/media/" + url})} desc={content} price={price} key={id} category={category} name={title} id={id} quality={quality} status={status}/>
                 })}
             </div>
         </div>

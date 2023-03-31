@@ -21,7 +21,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-const Header = () => {
+const Header = ({ isSearchBarHidden }) => {
     const [click, setClick] = useState(false);
     const [open, setOpen] = useState(false);
     const handleClick = () => setClick(!click);
@@ -63,7 +63,7 @@ const Header = () => {
                     <img className="logo" src={Logo} alt="" />
                     <span>Watmart</span>
                 </h1>
-                <div className="searchpart">
+                {!isSearchBarHidden && <div className="searchpart">
                     <TextField
                         fullWidth
                         id="search"
@@ -99,7 +99,8 @@ const Header = () => {
                     <Button variant="outlined" color="error">
                         Search
                     </Button>
-                </div>
+                </div>}
+                
                 <div className="container1">
                     {isAuthenticated ? 
                     <Stack direction="row" spacing={2}>
