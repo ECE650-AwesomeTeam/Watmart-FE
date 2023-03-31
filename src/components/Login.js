@@ -18,6 +18,8 @@ import MD5 from "crypto-js/md5";
 import { useNavigate } from "react-router-dom";
 import "../css/AnimationBg.css"
 import logo from "../assets/logo-no-background.png"
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 const theme = createTheme();
 
@@ -39,6 +41,7 @@ function Login() {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
+    const [loginFailed, setLoginFailed] = useState("");
 
     const formik = useFormik({
         initialValues: initialValues,
@@ -47,8 +50,16 @@ function Login() {
             console.log("login");
             setLoading(true);
             try {
-                await login(values.email, MD5(values.password).toString());
-                navigate('/')
+                let errorMsg = await login(values.email, MD5(values.password).toString())
+                if(errorMsg) {
+                    setLoading(false);
+                    setLoginFailed(errorMsg)
+                    setTimeout(() => {
+                        setLoginFailed("")
+                    }, 5000);
+                } else {
+                    navigate('/')
+                }
             } catch (e) {
                 setLoading(false);
             }
@@ -81,6 +92,10 @@ function Login() {
             </div>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
+                { loginFailed !== "" ? <Alert severity="error" onClose={() => {setLoginFailed("")}}>
+                    <AlertTitle>Login Failed</AlertTitle>
+                    {loginFailed}
+                </Alert> : null}
                 <Box
                     sx={{
                         marginTop: 8,
