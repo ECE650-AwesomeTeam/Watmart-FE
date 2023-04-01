@@ -56,6 +56,11 @@ const Header = ({ isSearchBarHidden }) => {
         logout();
       };
 
+
+    const handleSearch = () => {
+        navigate("/my-profile/quan.quach");
+    };
+
     return (
         <div className="header">
             <div className="container">
@@ -96,7 +101,7 @@ const Header = ({ isSearchBarHidden }) => {
                             </MenuItem>
                         </Select>
                     </FormControl>
-                    <Button variant="outlined" color="error">
+                    <Button variant="outlined" color="error" onClick={handleSearch}>
                         Search
                     </Button>
                 </div>}
