@@ -28,7 +28,7 @@ const Header = ({ isSearchBarHidden }) => {
     const navigate = useNavigate();
 
     const { isAuthenticated, email, logout } = useAuth();
-
+    console.log("isAuthenticated = " +isAuthenticated);
     const [category, setCategory] = React.useState("");
 
     const handleChange = (event) => {

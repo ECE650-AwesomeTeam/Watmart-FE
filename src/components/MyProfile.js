@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import styles from "../css/MyProfile.module.css";
 import Footer from "./Footer";
 import Avatar from '@mui/material/Avatar';
 import { BsPencilFill } from "react-icons/bs";
-
+import useAuth from '../hooks/useAuth';
+import ListView  from './ListView';
+import OrderList from "./OrderList";
 const MyProfile = () => {
+    const { isAuthenticated, email, products, orders, getProducts, getOrders } = useAuth();
+    useEffect(() => {
+        getProducts();
+        getOrders();
+    },[]);
+
     const [selectProductsOrOrders, setSelectProductsOrOrders] = useState({
-        select_products: false,
+        select_products: true,
         select_orders: false,
     });
 
@@ -19,6 +27,7 @@ const MyProfile = () => {
     const handleSelectOrders = () => {
         setSelectProductsOrOrders({select_products: false, select_orders: true });
     };
+
 
     return (
         <>
@@ -60,7 +69,8 @@ const MyProfile = () => {
                     </div>
                 </div>
                 <div className={styles["list-container"]}>
-                    hello1
+                    {selectProductsOrOrders.select_products && <ListView products={products} />}
+                    {selectProductsOrOrders.select_orders && <OrderList orders={orders} />}
                 </div>
             </div>
             <Footer />
