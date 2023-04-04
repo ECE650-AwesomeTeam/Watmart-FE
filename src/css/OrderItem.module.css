@@ -1,0 +1,64 @@
+.container {
+    gap: 3.2rem;
+    display: grid;
+    border: none;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    gap: 3.2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.figure {
+    max-width: 90%;
+    /* width: auto; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.1s linear;
+    border: none;
+}
+
+.figure::after {
+    content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: rgba(211, 211, 211, 0.2);
+      transition: all 0.15s linear;
+      cursor: pointer;
+}
+
+.figure:hover::after {
+    width: 100%;
+  }
+.figure:hover {
+    transform: scale(1.1);
+}
+.img {
+    max-width: 90%;
+    max-height: 90%;
+    margin-top: 1.5rem;
+    transition: all 0.1s linear;
+  }
+
+  .card-data {
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 0.5rem;
+    position: relative;
+}
+
+.more-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}

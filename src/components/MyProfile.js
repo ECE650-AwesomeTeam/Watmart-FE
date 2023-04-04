@@ -9,10 +9,19 @@ import ListView  from './ListView';
 import OrderList from "./OrderList";
 const MyProfile = () => {
     const { isAuthenticated, email, products, orders, getProducts, getOrders } = useAuth();
+    // const sorted_products = products;
+    // const sorted_orders = orders;
+
+    console.log("date created =" + new Date("2023-04-02 14:40"))
     useEffect(() => {
         getProducts();
         getOrders();
     },[]);
+
+    useEffect(() => {
+        // sorted_products = products.sort((p1, p2) => new Date(p2.time) - new Date(p1.time));
+        // sorted_orders = orders.sort((o1, o2) => new Date(o2.time) - new Date(o1.time));
+    },[products, orders]);
 
     const [selectProductsOrOrders, setSelectProductsOrOrders] = useState({
         select_products: true,

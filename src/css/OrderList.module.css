@@ -1,0 +1,9 @@
+.container {
+    --num-cols:  1;
+    --row-height: 220px;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(var(--num-cols), 1fr);
+    grid-auto-rows: var(--row-height);
+    row-gap: 1.7rem;
+}

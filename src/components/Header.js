@@ -103,7 +103,7 @@ const Header = ({ isSearchBarHidden }) => {
                             </MenuItem>
                         </Select>
                     </FormControl>
-                    <Button variant="outlined" color="error" onClick={handleSearch}>
+                    <Button variant="outlined" color="error">
                         Search
                     </Button>
                 </div>}
@@ -111,7 +111,7 @@ const Header = ({ isSearchBarHidden }) => {
                 <div className="container1">
                     {isAuthenticated ? 
                     <Stack direction="row" spacing={2}>
-                        <Avatar>{email.toUpperCase().charAt(0)}</Avatar>
+                        <Avatar onClick={handleSearch}>{email.toUpperCase().charAt(0)}</Avatar>
                         <Button variant="outlined" color="error" onClick={handleLogoutClick}>
                             Logout
                         </Button>

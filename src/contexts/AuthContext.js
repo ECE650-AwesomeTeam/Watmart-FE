@@ -195,16 +195,17 @@ export const AuthProvider = ({ children }) => {
         const accessToken = window.localStorage.getItem("accessToken");
         const config = {
             headers:{
-                'Authorization': /*accessToken*/ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxbXF1YWNoQHV3YXRlcmxvby5jYSIsInBhc3N3b3JkIjoiMjVmOWU3OTQzMjNiNDUzODg1ZjUxODFmMWI2MjRkMGIifQ.N2FxbCFKqjTRpuSFoHHdx1v8d0h92gtNL9IFFcj_Gtw',
+                'Authorization': /*accessToken*/ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IngyMnNoaUB1d2F0ZXJsb28uY2EiLCJwYXNzd29yZCI6Indob2lzeW91cmRhZGR5In0.8sqHbnEj2KDSYUQfQls9goYDYC_pQDJBiP3HwxR_Liw',
             },
             params: {
-                "email": /*state.email*/ "qqmquach@uwaterloo.ca"
+                "email": /*state.email*/ "x22shi@uwaterloo.ca"
             }
         };
 
         try {
-            const response = await axios.post('/myorder', config);
+            const response = await axios.get('/myorder/', config);
             const orders = response.data.data.orderList;
+            console.log(JSON.stringify(orders));
             dispatch({ type: "GET_MY_ORDERS", payload: orders});
         } catch(e) {
             console.log(e);
