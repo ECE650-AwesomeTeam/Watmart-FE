@@ -56,6 +56,7 @@ const Header = ({ isSearchBarHidden }) => {
     const handleCloseYes = () => {
         setOpen(false);
         logout();
+        navigate("/")
       };
 
 
