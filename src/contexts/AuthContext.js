@@ -6,6 +6,9 @@ const initialState = {
     isAuthenticated: false,
     isInitialised: false,
     email: "",
+    products: [],
+    orders: [],
+    submit_order_IDs: [],
 };
 
 const isValidToken = (accessToken) => {
@@ -42,7 +45,7 @@ const reducer = (state, action) => {
         }
         case "LOGIN": {
             const { token, email } = action.payload;
-
+            console.log("email" + email);
             return {
                 ...state,
                 isAuthenticated: true,
@@ -66,6 +69,21 @@ const reducer = (state, action) => {
                 token,
             };
         }
+        case "GET_MY_PRODUCTS":
+            return {
+                ...state,
+                products: action.payload,
+            };
+        case "GET_MY_ORDERS":
+            return {
+                ...state,
+                orders: action.payload
+            };
+        case "SUBMIT_ORDER":
+            return {
+                ...state,
+                submit_order_IDs: [...state.submit_order_IDs,action.payload],
+            }
         default: {
             return { ...state };
         }
@@ -92,7 +110,7 @@ export const AuthProvider = ({ children }) => {
         const { result, msg } = response.data;
 
 
-        if(result == "Failed") {
+        if(result === "Failed") {
             dispatch({
                 type: "LOGIN_FAIL",
                 payload: {
@@ -104,8 +122,9 @@ export const AuthProvider = ({ children }) => {
 
         const { token } = response.data.data
 
-        console.log(token)
-        setSession(token);
+        console.log(token);
+
+        setSession(email);
 
         dispatch({
             type: "LOGIN",
@@ -133,7 +152,7 @@ export const AuthProvider = ({ children }) => {
 
         const { result, msg } = response.data;
 
-        if(result == "Failed") {
+        if(result === "Failed") {
             return msg;
         }
 
@@ -148,6 +167,71 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         setSession(null);
         dispatch({ type: "LOGOUT" });
+    };
+
+    const getProducts = async () => {
+        const accessToken = window.localStorage.getItem("accessToken");
+        const config = {
+            headers:{
+                'Authorization': /*accessToken*/ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IngyMnNoaUB1d2F0ZXJsb28uY2EiLCJwYXNzd29yZCI6Indob2lzeW91cmRhZGR5In0.8sqHbnEj2KDSYUQfQls9goYDYC_pQDJBiP3HwxR_Liw',
+            },
+            params: {
+                "email": /*state.email*/ "x22shi@uwaterloo.ca"
+            }
+        };
+
+        try {
+            const response = await axios.get('/mypost/', config);
+            const products = response.data.data.postList;
+            dispatch({ type: "GET_MY_PRODUCTS", payload: products});
+        } catch(e) {
+            console.log(e);
+        }
+    };
+
+    const getOrders = async () => {
+        const accessToken = window.localStorage.getItem("accessToken");
+        const config = {
+            headers:{
+                'Authorization': /*accessToken*/ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxbXF1YWNoQHV3YXRlcmxvby5jYSIsInBhc3N3b3JkIjoiMjVmOWU3OTQzMjNiNDUzODg1ZjUxODFmMWI2MjRkMGIifQ.N2FxbCFKqjTRpuSFoHHdx1v8d0h92gtNL9IFFcj_Gtw',
+            },
+            params: {
+                "email": /*state.email*/ "qqmquach@uwaterloo.ca"
+            }
+        };
+
+        try {
+            const response = await axios.post('/myorder', config);
+            const orders = response.data.data.orderList;
+            dispatch({ type: "GET_MY_ORDERS", payload: orders});
+        } catch(e) {
+            console.log(e);
+        }
+    };
+
+    const submitOrder = async (productId, note, sellerEmail ) => {
+        // const accessToken = window.localStorage.getItem("accessToken");
+        const config = {
+            headers:{
+                'Authorization': /*accessToken*/ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxbXF1YWNoQHV3YXRlcmxvby5jYSIsInBhc3N3b3JkIjoiMjVmOWU3OTQzMjNiNDUzODg1ZjUxODFmMWI2MjRkMGIifQ.N2FxbCFKqjTRpuSFoHHdx1v8d0h92gtNL9IFFcj_Gtw',
+            }
+        };
+        const formData = new FormData();
+        formData.append("email", "qqmquach@uwaterloo.ca");
+        formData.append("buyer", "qqmquach@uwaterloo.ca");
+        formData.append("seller", sellerEmail);
+        formData.append("product", productId);
+        formData.append("note", note);
+        formData.append("status", "Valid");
+        
+        try {
+            const response = await axios.post('/order',formData, config);
+            const orderId = response.data.data.orderID;
+            dispatch({ type: "SUBMIT_ORDER", payload: {productId,orderId}});
+        } catch(e) {
+            console.log(e);
+        }
+
     };
 
     useEffect(() => {
@@ -194,9 +278,12 @@ export const AuthProvider = ({ children }) => {
             value={{
                 ...state,
                 method: "JWT",
+                getProducts,
+                getOrders,
                 login,
                 logout,
                 register,
+                submitOrder,
             }}
         >
             {children}

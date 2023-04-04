@@ -11,7 +11,7 @@ const SearchItemList = () => {
     const [category, setCategory] = useState("");
     const { id } = useParams();
     useEffect(() => {
-        setCategory(id);
+        setCategory(id.toLowerCase());
     },[id]);
     
     return (
@@ -20,7 +20,7 @@ const SearchItemList = () => {
             <div className={styles["content-container"]}>
                 <div className={styles["filter-container"]}>
                     <div className={styles.filter}>
-                        <Filter isCategoryHidden={id !== "all" }/>
+                        <Filter isCategoryHidden={category !== "all" }/>
                     </div>
                 </div>
                 <div className={styles["items-container"]}>

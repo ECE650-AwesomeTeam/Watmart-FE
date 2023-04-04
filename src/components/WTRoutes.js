@@ -6,6 +6,7 @@ import Listings from "./Listings";
 import ListingDetail from "./ListingDetail";
 import SearchItemList from "./SearchItemList";
 import ScrollToTop from "./ScrollToTop";
+import MyProfile from "./MyProfile";
 
 const WTRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const WTRoutes = () => {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/listings/:id" element={<SearchItemList />} />
                 <Route path="/listing/:id" element={<ListingDetail />} />
+                <Route path="/my-profile/:id" element={<MyProfile />} />
             </Routes>
         </>
     );

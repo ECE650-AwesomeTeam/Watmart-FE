@@ -32,7 +32,7 @@ const Sort = ({ category }) => {
 
             { /* 2nd column */}
             <div className={styles["product-data"]}>
-                <p>{`${filter_products.filter(item=> item.category === category).length}`} Product Available</p>
+                <p>{category !== "all" ? `${filter_products.filter(item=> item.category === category).length}` : `${filter_products.length}`} Product Available</p>
             </div>
 
             { /* 3rd column */}

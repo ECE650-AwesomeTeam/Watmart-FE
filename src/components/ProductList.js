@@ -4,13 +4,13 @@ import { useFilterContext  } from "../contexts/FilterContext";
 import AdsList from "./AdsList";
 
 const ProductList = ({ category }) => {
-    const { filter_products, grid_view } = useFilterContext();
-    // console.log("category =" +id);
+    const { filter_products, grid_view, all_products } = useFilterContext();
+    console.log("category =" + category);
     if (grid_view === true) {
-        return <AdsList numCol={4} products={filter_products.filter(item => {return item.category === category; })}/>
+        return <AdsList numCol={4} products={ category !== "all" ? all_products.filter(item => {return item.category.toLowerCase() === category; }) : filter_products }/>
     }
     if (grid_view === false) {
-        return <ListView products={filter_products.filter(item => {return item.category === category; })}/>
+        return <ListView products={category !== "all" ? all_products.filter(item => {return item.category.toLowerCase() === category; }) : filter_products}/>
     }
 };
 

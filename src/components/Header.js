@@ -28,7 +28,7 @@ const Header = ({ isSearchBarHidden }) => {
     const navigate = useNavigate();
 
     const { isAuthenticated, email, logout } = useAuth();
-
+    console.log("isAuthenticated = " +isAuthenticated);
     const [category, setCategory] = React.useState("");
 
     const handleChange = (event) => {
@@ -55,6 +55,11 @@ const Header = ({ isSearchBarHidden }) => {
         setOpen(false);
         logout();
       };
+
+
+    const handleSearch = () => {
+        navigate("/my-profile/quan.quach");
+    };
 
     return (
         <div className="header">
@@ -96,7 +101,7 @@ const Header = ({ isSearchBarHidden }) => {
                             </MenuItem>
                         </Select>
                     </FormControl>
-                    <Button variant="outlined" color="error">
+                    <Button variant="outlined" color="error" onClick={handleSearch}>
                         Search
                     </Button>
                 </div>}
