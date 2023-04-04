@@ -2,17 +2,17 @@ import React from "react";
 import '../css/CategoryItem.css';
 import { useNavigate } from 'react-router-dom';
 import ListingDetail from "./ListingDetail";
-const CategoryItem = (props) => {
+const CategoryItem = ({ img, categoryName }) => {
     const navigate = useNavigate();
 
     const categoryClickHandler = () => {
-        navigate("/listings");
+        navigate("/listings/"+categoryName);
     };
     return (
         <button data-testid="item" className="category-item-container"  onClick={categoryClickHandler}>
-            <img className="" src={props.img} atl='' />
+            <img className="" src={img} atl='' />
             <div className="overlay" />
-            <p className="category-item-text">{props.categoryName}</p>
+            <p className="category-item-text">{categoryName}</p>
         </button>    
     );
 }

@@ -5,15 +5,20 @@ import Signup from "./Signup";
 import Listings from "./Listings";
 import ListingDetail from "./ListingDetail";
 import SearchItemList from "./SearchItemList";
-const WTRoutes: React.FC<{}> = () => {
+import ScrollToTop from "./ScrollToTop";
+import MyProfile from "./MyProfile";
+
+const WTRoutes = () => {
     return (
         <>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<Listings />} />
                 <Route path="/login" element={<Login />} /> 
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/listings" element={<SearchItemList />} />
+                <Route path="/listings/:id" element={<SearchItemList />} />
                 <Route path="/listing/:id" element={<ListingDetail />} />
+                <Route path="/my-profile/:id" element={<MyProfile />} />
             </Routes>
         </>
     );

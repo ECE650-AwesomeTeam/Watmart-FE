@@ -21,13 +21,14 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-const Header = () => {
+const Header = ({ isSearchBarHidden }) => {
     const [click, setClick] = useState(false);
     const [open, setOpen] = useState(false);
     const handleClick = () => setClick(!click);
     const navigate = useNavigate();
 
     const { isAuthenticated, email, logout } = useAuth();
+
     console.log(isAuthenticated)
 
     const [category, setCategory] = React.useState("");
@@ -57,6 +58,11 @@ const Header = () => {
         logout();
       };
 
+
+    const handleSearch = () => {
+        navigate("/my-profile/quan.quach");
+    };
+
     return (
         <div className="header">
             <div className="container">
@@ -64,7 +70,7 @@ const Header = () => {
                     <img className="logo" src={Logo} alt="" />
                     <span>Watmart</span>
                 </h1>
-                <div className="searchpart">
+                {!isSearchBarHidden && <div className="searchpart">
                     <TextField
                         fullWidth
                         id="search"
@@ -97,10 +103,11 @@ const Header = () => {
                             </MenuItem>
                         </Select>
                     </FormControl>
-                    <Button variant="outlined" color="error">
+                    <Button variant="outlined" color="error" onClick={handleSearch}>
                         Search
                     </Button>
-                </div>
+                </div>}
+                
                 <div className="container1">
                     {isAuthenticated ? 
                     <Stack direction="row" spacing={2}>

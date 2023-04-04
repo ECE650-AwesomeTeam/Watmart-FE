@@ -1,27 +1,31 @@
 import React from "react";
-import '../css/ListingItem.css';
+import styles from '../css/ListingItem.module.css';
 import {FaRegHeart} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import FormatPrice from "./FormatPrice";
 
-const AdsItem = (props) => {
+const AdsItem = ({ img, desc, price, category, name, id, quality, status, user }) => {
     const navigate = useNavigate();
 
     const listingClickHandler = () => {
-        navigate("/listing/300");
+        navigate(`/listing/${id}`);
     };
 
     return (
-        <figure data-testid="listing" onClick={listingClickHandler}>
-           <img src={props.img} atl='' />
-       
-       
-       <div className="ads-desc-section">
-           <p className="ads-desc">{props.desc}</p>
-           <div className="ads-desc-bottom">
-               <p className="ads-price">$ {props.price}</p>
-               <FaRegHeart className="ads-bookmark-icon" />
-           </div>
-       </div>
+        <figure className={styles.figure} onClick={listingClickHandler}>
+            <div className={styles["img-container"]}>
+                <img src={img[0]} atl='' />
+                <figcaption className={styles.caption}>{category}</figcaption>
+            </div>
+            
+            <div className={styles["ads-desc-section"]}>
+                <p className={styles["item-name"]}>{name}</p>
+                <p className={styles["ads-desc"]}>{desc}</p>
+                <div className={styles["ads-desc-bottom"]}>
+                    <p><FormatPrice price={price} /></p>
+                    <FaRegHeart className={styles["ads-bookmark-icon"]} />
+                </div>
+            </div>
         </figure>
         
     )
