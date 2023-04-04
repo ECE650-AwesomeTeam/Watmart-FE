@@ -28,6 +28,7 @@ const Header = () => {
     const navigate = useNavigate();
 
     const { isAuthenticated, email, logout } = useAuth();
+    console.log(isAuthenticated)
 
     const [category, setCategory] = React.useState("");
 

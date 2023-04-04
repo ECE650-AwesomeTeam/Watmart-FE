@@ -140,7 +140,7 @@ function Signup() {
                 </Grid>
                 <Grid item xs={5} component={Paper} elevation={6} square>
                     { registerFailed !== "" ? <Alert severity="error" onClose={() => {setRegisterFailed("")}}>
-                        <AlertTitle>Register Failed</AlertTitle>
+                        <AlertTitle>Message</AlertTitle>
                         {registerFailed}
                     </Alert> : null}
                     <Box
