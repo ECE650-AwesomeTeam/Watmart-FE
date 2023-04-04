@@ -21,12 +21,14 @@ const isValidToken = (accessToken) => {
     return decodedToken.exp > currentTime;
 };
 
-const setSession = (accessToken) => {
+const setSession = (accessToken, email) => {
     if (accessToken) {
         localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("user", email);
         axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     } else {
         localStorage.removeItem("accessToken");
+        localStorage.removeItem("user");
         delete axios.defaults.headers.common.Authorization;
     }
 };
@@ -34,13 +36,13 @@ const setSession = (accessToken) => {
 const reducer = (state, action) => {
     switch (action.type) {
         case "INIT": {
-            const { isAuthenticated, token } = action.payload;
+            const { isAuthenticated, email } = action.payload;
 
             return {
                 ...state,
                 isAuthenticated,
                 isInitialised: true,
-                token,
+                email,
             };
         }
         case "LOGIN": {
@@ -122,9 +124,9 @@ export const AuthProvider = ({ children }) => {
 
         const { token } = response.data.data
 
-        console.log(token);
+        console.log(token)
+        setSession(token, email);
 
-        setSession(email);
 
         dispatch({
             type: "LOGIN",
@@ -238,17 +240,16 @@ export const AuthProvider = ({ children }) => {
         (async () => {
             try {
                 const accessToken = window.localStorage.getItem("accessToken");
+                const user = window.localStorage.getItem("user");
 
-                if (accessToken && isValidToken(accessToken)) {
-                    setSession(accessToken);
-                    const response = await axios.get("/api/auth/profile");
-                    const { user } = response.data;
+                if (accessToken) {
+                    setSession(accessToken, user);
 
                     dispatch({
                         type: "INIT",
                         payload: {
                             isAuthenticated: true,
-                            user,
+                            email: user
                         },
                     });
                 } else {
@@ -256,7 +257,6 @@ export const AuthProvider = ({ children }) => {
                         type: "INIT",
                         payload: {
                             isAuthenticated: false,
-                            user: null,
                         },
                     });
                 }
