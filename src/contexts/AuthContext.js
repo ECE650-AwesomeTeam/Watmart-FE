@@ -172,13 +172,9 @@ export const AuthProvider = ({ children }) => {
     };
 
     const getProducts = async () => {
-        const accessToken = window.localStorage.getItem("accessToken");
         const config = {
-            headers:{
-                'Authorization': /*accessToken*/ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IngyMnNoaUB1d2F0ZXJsb28uY2EiLCJwYXNzd29yZCI6Indob2lzeW91cmRhZGR5In0.8sqHbnEj2KDSYUQfQls9goYDYC_pQDJBiP3HwxR_Liw',
-            },
             params: {
-                "email": /*state.email*/ "x22shi@uwaterloo.ca"
+                "email": state.email
             }
         };
 
@@ -194,11 +190,8 @@ export const AuthProvider = ({ children }) => {
     const getOrders = async () => {
         const accessToken = window.localStorage.getItem("accessToken");
         const config = {
-            headers:{
-                'Authorization': /*accessToken*/ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IngyMnNoaUB1d2F0ZXJsb28uY2EiLCJwYXNzd29yZCI6Indob2lzeW91cmRhZGR5In0.8sqHbnEj2KDSYUQfQls9goYDYC_pQDJBiP3HwxR_Liw',
-            },
             params: {
-                "email": /*state.email*/ "x22shi@uwaterloo.ca"
+                "email": state.email
             }
         };
 
@@ -213,15 +206,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     const submitOrder = async (productId, note, sellerEmail ) => {
-        // const accessToken = window.localStorage.getItem("accessToken");
-        const config = {
-            headers:{
-                'Authorization': /*accessToken*/ 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InFxbXF1YWNoQHV3YXRlcmxvby5jYSIsInBhc3N3b3JkIjoiMjVmOWU3OTQzMjNiNDUzODg1ZjUxODFmMWI2MjRkMGIifQ.N2FxbCFKqjTRpuSFoHHdx1v8d0h92gtNL9IFFcj_Gtw',
-            }
-        };
+        const config = {};
         const formData = new FormData();
-        formData.append("email", "qqmquach@uwaterloo.ca");
-        formData.append("buyer", "qqmquach@uwaterloo.ca");
+        console.log("Email = " + state.email);
+        formData.append("email", state.email);
+        formData.append("buyer", state.email);
         formData.append("seller", sellerEmail);
         formData.append("product", productId);
         formData.append("note", note);
